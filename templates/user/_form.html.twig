@@ -1,0 +1,43 @@
+      <div class="row">
+       <div class="col-xs-12 col-sm-6 col-sm-offset-3 card card-panel">
+        <h3 class="text-extrabold">Create a new account</h3>
+        <form id="register-form" role="form" method="post" accept-char="UTF-8" autocomplete="off" data-parsley-validate>
+        {{ form_start(registrationForm) }}
+
+                            <input type="hidden" name="_token" value="">
+
+                            <div class="input-field">
+                                    {{ form_widget(registrationForm.email) }}
+                                    {{ form_label(registrationForm.email) }}
+                                <span class="help-block">Type your email address.</span>
+                            </div>
+                            <div class="input-field">
+                                {{ form_widget(registrationForm.plainPassword) }}
+                                {{ form_label(registrationForm.plainPassword,'Password') }}
+                                <i class="fa fa-eye show-password"></i>
+                                <span class="help-block">Type your password.</span>
+                            </div>
+                            <div class="input-field">
+                                {# <input type="password" name="password_confirmation" id="password_confirmation" value=""
+                                       required
+                                       data-parsley-trigger="change"
+                                       data-parsley-equalto="#password"
+                                       data-parsley-error-message="Password does not match.">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <i class="fa fa-eye show-password"></i>
+                                <span class="help-block">Confirm your password.</span> #}
+                            </div>
+                            <div class="checkbox">
+                                 {{ form_widget(registrationForm.agreeTerms) }}
+                                 {{ form_label(registrationForm.agreeTerms) }}
+                                 <a href="#!" target="_blank" style="font-size:15px">Terms Of Use</a>
+                            </div>
+                            <button type="submit" class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20">{{ button_label|default('Create an account') }}</button>
+
+                            <div class="links">
+                                <a href="{{path('app_login')}}">Already have an account? Click here</a>
+                            </div>
+
+{{ form_end(registrationForm) }}
+                    </div>
+                </div>

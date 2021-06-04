@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Candidats{% endblock %}
+
+{% block body %}
+<div class="base">
+
+    <!-- Page -->
+    <div class="page">
+
+        <!-- Page Header-->
+        <section class="page-title page-title-bg fixed-bg overlay dark-5 padding-top-160 padding-bottom-80">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="white-text">Your profile</h2>
+                        <span class="white-text">Personnal & Professionnal informations</span>
+                        <ol class="breadcrumb">
+                            <li><a href="#!">Home</a></li>
+                            <li class="active">Profile</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    {% set fielCount = 0%}
+    {% for data in dataCandidat %}
+    {% if data != null %}
+    {% set  fielCount = fielCount +1 %}
+    {% endif %}
+    {% endfor %}
+    {% set pourcentageCompleted = fielCount *100 / dataLength %}
+        <!-- Page Content-->
+        <section class="gray-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="score-container">
+                       {% if pourcentageCompleted != 100 %}
+                        <h4>
+                            <img src="https://media.giphy.com/media/d10dMmzqCYqQ0/giphy.gif" style="height: 80px; width: 201px;"> &nbsp;
+                            &nbsp; Your profile is no completed.
+                        </h4>
+                    {% else %}
+                        <h4>
+                            <img src="https://i.imgur.com/s9bPVaK.gif" style="height: 80px; width: 201px;"> &nbsp;
+                            &nbsp; Hooray ! Your profile is complete.
+                        </h4>
+                    {% endif %}
+                        <div class="c100 p{{pourcentageCompleted|round}} small complete ">
+                            <span>{{pourcentageCompleted|round}}%</span>
+                            <div class="slice">
+                                <div class="bar"></div>
+                                <div class="fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </section>
+
+    {{ include('candidats/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    </div>
+
+</div>
+    {# <h1>Edit Candidats</h1>
+
+
+    <a href="{{ path('candidats_index') }}">back to list</a>
+
+    {{ include('candidats/_delete_form.html.twig') }} #}
+{% endblock %}

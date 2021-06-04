@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit InfoAdminCandidat{% endblock %}
+
+{% block body %}
+    <h1>Edit InfoAdminCandidat</h1>
+
+    {{ include('info_admin_candidat/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('info_admin_candidat_index') }}">back to list</a>
+
+    {{ include('info_admin_candidat/_delete_form.html.twig') }}
+{% endblock %}

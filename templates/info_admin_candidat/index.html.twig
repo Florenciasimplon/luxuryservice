@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}InfoAdminCandidat index{% endblock %}
+
+{% block body %}
+    <h1>InfoAdminCandidat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date_create</th>
+                <th>Date_undated</th>
+                <th>Date_deleted</th>
+                <th>Files</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for info_admin_candidat in info_admin_candidats %}
+            <tr>
+                <td>{{ info_admin_candidat.id }}</td>
+                <td>{{ info_admin_candidat.dateCreate ? info_admin_candidat.dateCreate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ info_admin_candidat.dateUndated ? info_admin_candidat.dateUndated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ info_admin_candidat.dateDeleted ? info_admin_candidat.dateDeleted|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ info_admin_candidat.files }}</td>
+                <td>
+                    <a href="{{ path('info_admin_candidat_show', {'id': info_admin_candidat.id}) }}">show</a>
+                    <a href="{{ path('info_admin_candidat_edit', {'id': info_admin_candidat.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('info_admin_candidat_new') }}">Create new</a>
+{% endblock %}

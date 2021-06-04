@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gender{% endblock %}
+
+{% block body %}
+    <h1>Gender</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gender.id }}</td>
+            </tr>
+            <tr>
+                <th>Male</th>
+                <td>{{ gender.male }}</td>
+            </tr>
+            <tr>
+                <th>Female</th>
+                <td>{{ gender.female }}</td>
+            </tr>
+            <tr>
+                <th>Undefined</th>
+                <td>{{ gender.undefined }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('gender_index') }}">back to list</a>
+
+    <a href="{{ path('gender_edit', {'id': gender.id}) }}">edit</a>
+
+    {{ include('gender/_delete_form.html.twig') }}
+{% endblock %}
