@@ -12,12 +12,12 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
- * @Route("/candidats")
+ * @Route("/")
  */
 class CandidatsController extends AbstractController
 {
     /**
-     * @Route("/", name="candidats_index", methods={"GET"})
+     * @Route("/admin/candidats", name="candidats_index", methods={"GET"})
      */
     public function index(CandidatsRepository $candidatsRepository): Response
     {
@@ -27,7 +27,7 @@ class CandidatsController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="candidats_new", methods={"GET","POST"})
+     * @Route("/admin/new", name="candidats_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -50,7 +50,7 @@ class CandidatsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="candidats_show", methods={"GET"})
+     * @Route("/admin/{id}", name="candidats_show", methods={"GET"})
      */
     public function show(Candidats $candidat): Response
     {
@@ -60,7 +60,7 @@ class CandidatsController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="candidats_edit", methods={"GET","POST"})
+     * @Route("/candidats/{id}/edit", name="candidats_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Candidats $candidat,SluggerInterface $slugger): Response
     {
@@ -97,11 +97,13 @@ class CandidatsController extends AbstractController
             'user'=> $user,
             'dataCandidat' => $dataCandidat,
             'dataLength'=> $dataLength,
+            'filleFieldCount'=> $candidat->getProfileCompletionPercent()
         ]);
+        
     }
 
     /**
-     * @Route("/{id}", name="candidats_delete", methods={"POST"})
+     * @Route("/admin/{id}", name="candidats_delete", methods={"POST"})
      */
     public function delete(Request $request, Candidats $candidat): Response
     {
@@ -136,5 +138,8 @@ class CandidatsController extends AbstractController
                 }
 
         }
+
+    
+
         
 }

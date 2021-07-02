@@ -73,6 +73,7 @@ class Candidats
 
     /**
      * @ORM\ManyToOne(targetEntity=JobCategory::class, inversedBy="candidats")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
      */
     private $job_candidat;
 
@@ -437,5 +438,24 @@ class Candidats
                 'job_candidat' => $this->getJobCandidat(),
                 'passport' => $this->getPassport()
             ];
+    }
+    
+    public function isProfileComplete()
+    {
+        return $this->getProfileCompletionPercent() === 100;
+    }
+
+    public function getProfileCompletionPercent()
+    {
+        $filledFieldCount = 0;
+        $fields = $this->toArray();
+
+        foreach($fields as $field) {
+            if (!empty($field)) {
+                $filledFieldCount++;
+            }
+        }
+
+        return $filledFieldCount * 100 / count($fields);
     }
 }

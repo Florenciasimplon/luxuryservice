@@ -17,8 +17,7 @@
             <tr>
                 <td>{{ candidature.id }}</td>
                 <td>
-                    <a href="{{ path('candidature_show', {'id': candidature.id}) }}">show</a>
-                    <a href="{{ path('candidature_edit', {'id': candidature.id}) }}">edit</a>
+                
                 </td>
             </tr>
         {% else %}
@@ -29,5 +28,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('candidature_new') }}">Create new</a>
+    <a href="{{ path('candidature_new',{'id': candidatures.id}) }}">Create new</a>
 {% endblock %}

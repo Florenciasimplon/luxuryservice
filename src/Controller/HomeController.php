@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\JobOfferRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,14 +12,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(JobOfferRepository $jobOfferRepository): Response
     {
-
-        
-        
-
         return $this->render('home/index.html.twig', [
             'user'=>$this->getUser(),
+            'job_offers' => $jobOfferRepository->findAll(),
         ]);
     }
     /**
@@ -35,4 +33,13 @@ class HomeController extends AbstractController
     {
         return $this->render('home/compagny.html.twig');
     }
+    /**
+     * @Route("/acces-denied", name="acces-denied")
+     */
+    public function acces_denied():Response
+    {
+        $this->addFlash('success', "Vous n'êtes pas autorisé à accéder à cette page");
+        return $this->redirectToRoute('home');
+    }
+
 }

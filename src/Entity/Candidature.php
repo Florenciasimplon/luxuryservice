@@ -23,9 +23,15 @@ class Candidature
     private $candidat;
 
     /**
-     * @ORM\ManyToOne(targetEntity=JobOffer::class, inversedBy="candidatures")
+     * @ORM\ManyToOne(targetEntity=JobOffer::class, inversedBy="candidatures", cascade={"persist","remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $job_offer;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $create_date;
 
     public function getId(): ?int
     {
@@ -55,4 +61,17 @@ class Candidature
 
         return $this;
     }
+
+    public function getCreateDate(): ?\DateTimeInterface
+    {
+        return $this->create_date;
+    }
+
+    public function setCreateDate(\DateTimeInterface $create_date): self
+    {
+        $this->create_date = $create_date;
+
+        return $this;
+    }
+    
 }

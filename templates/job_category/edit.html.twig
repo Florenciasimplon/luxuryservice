@@ -3,8 +3,8 @@
 {% block title %}Edit JobCategory{% endblock %}
 
 {% block body %}
-    <h1>Edit JobCategory</h1>
-
+    <h1 style="padding-top:10rem; text-align:center; background-color:#2F3138; margin-top:0; color:white ;padding-bottom:2%">Edit JobCategory</h1>
+    
     {{ include('job_category/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('job_category_index') }}">back to list</a>

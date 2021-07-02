@@ -20,8 +20,8 @@ class JobOffer
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Clients::class, inversedBy="jobOffers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Clients::class,inversedBy="jobOffers")
+     * 
      */
     private $client;
 
@@ -62,13 +62,13 @@ class JobOffer
 
     /**
      * @ORM\ManyToOne(targetEntity=JobCategory::class, inversedBy="jobOffers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false,onDelete="SET NULL")
      */
     private $job_category;
 
     /**
      * @ORM\ManyToOne(targetEntity=JobTypes::class, inversedBy="jobOffers")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false,)
      */
     private $job_type;
 

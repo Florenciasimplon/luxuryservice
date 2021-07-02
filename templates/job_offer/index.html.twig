@@ -3,47 +3,7 @@
 {% block title %}JobOffer index{% endblock %}
 
 {% block body %}
-    {# <h1>JobOffer index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>Note</th>
-                <th>Title</th>
-                <th>Location</th>
-                <th>Closing_date</th>
-                <th>Salary</th>
-                <th>Creation_date</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for job_offer in job_offers %}
-            <tr>
-                <td>{{ job_offer.id }}</td>
-                <td>{{ job_offer.description }}</td>
-                <td>{{ job_offer.note }}</td>
-                <td>{{ job_offer.title }}</td>
-                <td>{{ job_offer.location }}</td>
-                <td>{{ job_offer.closingDate ? job_offer.closingDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ job_offer.salary }}</td>
-                <td>{{ job_offer.creationDate ? job_offer.creationDate|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('job_offer_show', {'id': job_offer.id}) }}">show</a>
-                    <a href="{{ path('job_offer_edit', {'id': job_offer.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('job_offer_new') }}">Create new</a> #}
+  
     <div class="base">
 
     <!-- Page -->
@@ -73,128 +33,46 @@
 
                     <ul class="portfolio-filter brand-filter text-center">
                         <li class="active waves-effect waves-light" data-group="all">All</li>
-                        <li class=" waves-effect waves-light" data-group="commercial">Commercial</li>
-                        <li class=" waves-effect waves-light" data-group="retail">Retail sales</li>
-                        <li class=" waves-effect waves-light" data-group="creative">Creative</li>
-                        <li class=" waves-effect waves-light" data-group="technology">Technology</li>
-                        <li class=" waves-effect waves-light" data-group="marketing">Marketing & PR</li>
-                        <li class=" waves-effect waves-light" data-group="fashion">Fashion & luxury</li>
-                        <li class=" waves-effect waves-light" data-group="management">Management & HR</li>
+                        <li class=" waves-effect waves-light" data-group="Commercial">Commercial</li>
+                        <li class=" waves-effect waves-light" data-group="Retail">Retail sales</li>
+                        <li class=" waves-effect waves-light" data-group="Creative">Creative</li>
+                        <li class=" waves-effect waves-light" data-group="Technology">Technology</li>
+                        <li class=" waves-effect waves-light" data-group="Marketing">Marketing & PR</li>
+                        <li class=" waves-effect waves-light" data-group="Fashion & luxury">Fashion & luxury</li>
+                        <li class=" waves-effect waves-light" data-group="Management">Management & HR</li>
                     </ul>
                     <div class="portfolio portfolio-with-title col-2 gutter mt-30">
 
-                        <div class="portfolio-item" data-groups='["all", "commercial"]'>
+                         {% for job_offer in job_offers  %}
+                        <div class="portfolio-item" data-groups='["all", "{{job_offer.jobCategory}}"]'>
                             <div class="portfolio-wrapper">
                                 <div class="card job-card">
                                     <div class="card-content">
                                         <span class="title">
-                                            <span class="card-title">2nd assistant position</span>
-                                            <span class="ref grey-text">Ref. 1062</span>
+                                            <span class="card-title">{{job_offer.title}}</span>
+                                            <span class="ref grey-text">Ref.{{job_offer.id}}</span>
                                         </span>
                                         <div class="metas mb-20">
                                             <div class="meta">
-                                                <i class="material-icons">&#xE53E;</i>45k&euro;
+                                                <i class="material-icons">&#xE53E;</i>{{job_offer.salary}}&euro;
                                             </div>
                                             <div class="meta">
-                                                <i class="material-icons">&#xE916;</i>2018-10-01
+                                                <i class="material-icons">&#xE916;</i>{{job_offer.creationdate|date('d/m/y')}}
                                             </div>
                                             <div class="meta">
-                                                <i class="material-icons">&#xE55F;</i>Paris
+                                                <i class="material-icons">&#xE55F;</i>{{job_offer.location}}
                                             </div>
                                         </div>
-                                        <p class="truncate-text">Nulla interdum, erat et mollis eleifend, urna turpis pellentesque dolor, sed rhoncus erat est sit amet diam. Aliquam dignissim ipsum nec lorem pulvinar.</p>
+                                        <p class="truncate-text">{{job_offer.description}}</p>
                                     </div>
                                     <div class="card-action">
-                                        <a class="btn btn-md primary border waves-effect waves-dark" href="/jobs/show.html">Details</a>
-                                        <a class="btn btn-md primary waves-effect waves-light" href="#!">Apply</a>
+                                        <a class="btn btn-md primary border waves-effect waves-dark" href="{{ path('job_offer_show', {'id': job_offer.id}) }}">Details</a>
+                                        <a class="btn btn-md primary waves-effect waves-light" href="{{ path('job_offer_show', {'id': job_offer.id}) }}">Apply</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="portfolio-item" data-groups='["all", "commercial"]'>
-                            <div class="portfolio-wrapper">
-                                <div class="card job-card">
-                                    <div class="card-content">
-                                        <span class="title">
-                                            <span class="card-title">2nd assistant position</span>
-                                            <span class="ref grey-text">Ref. 1062</span>
-                                        </span>
-                                        <div class="metas mb-20">
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE53E;</i>45k&euro;
-                                            </div>
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE916;</i>2018-10-01
-                                            </div>
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE55F;</i>Paris
-                                            </div>
-                                        </div>
-                                        <p class="truncate-text">Nulla interdum, erat et mollis eleifend, urna turpis pellentesque dolor, sed rhoncus erat est sit amet diam. Aliquam dignissim ipsum nec lorem pulvinar.</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <a class="btn btn-md primary border waves-effect waves-dark" href="/jobs/show.html">Details</a>
-                                        <a class="btn btn-md primary waves-effect waves-light" href="#!">Apply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio-item" data-groups='["all", "commercial"]'>
-                            <div class="portfolio-wrapper">
-                                <div class="card job-card">
-                                    <div class="card-content">
-                                        <span class="title">
-                                            <span class="card-title">2nd assistant position</span>
-                                            <span class="ref grey-text">Ref. 1062</span>
-                                        </span>
-                                        <div class="metas mb-20">
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE53E;</i>45k&euro;
-                                            </div>
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE916;</i>2018-10-01
-                                            </div>
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE55F;</i>Paris
-                                            </div>
-                                        </div>
-                                        <p class="truncate-text">Nulla interdum, erat et mollis eleifend, urna turpis pellentesque dolor, sed rhoncus erat est sit amet diam. Aliquam dignissim ipsum nec lorem pulvinar.</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <a class="btn btn-md primary border waves-effect waves-dark" href="/jobs/show.html">Details</a>
-                                        <a class="btn btn-md primary waves-effect waves-light" href="#!">Apply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="portfolio-item" data-groups='["all", "commercial"]'>
-                            <div class="portfolio-wrapper">
-                                <div class="card job-card">
-                                    <div class="card-content">
-                                        <span class="title">
-                                            <span class="card-title">2nd assistant position</span>
-                                            <span class="ref grey-text">Ref. 1062</span>
-                                        </span>
-                                        <div class="metas mb-20">
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE53E;</i>45k&euro;
-                                            </div>
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE916;</i>2018-10-01
-                                            </div>
-                                            <div class="meta">
-                                                <i class="material-icons">&#xE55F;</i>Paris
-                                            </div>
-                                        </div>
-                                        <p class="truncate-text">Nulla interdum, erat et mollis eleifend, urna turpis pellentesque dolor, sed rhoncus erat est sit amet diam. Aliquam dignissim ipsum nec lorem pulvinar.</p>
-                                    </div>
-                                    <div class="card-action">
-                                        <a class="btn btn-md primary border waves-effect waves-dark" href="/jobs/show.html">Details</a>
-                                        <a class="btn btn-md primary waves-effect waves-light" href="#!">Apply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                         {% endfor %}
                         <div class="no-item"></div>
                     </div>
                 </div>

@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/experience")
+ * @Route("admin/experience")
  */
 class ExperienceController extends AbstractController
 {
     /**
-     * @Route("/", name="experience_index", methods={"GET"})
+     * @Route("/index", name="experience_index", methods={"GET"})
      */
     public function index(ExperienceRepository $experienceRepository): Response
     {

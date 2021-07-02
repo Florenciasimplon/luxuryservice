@@ -162,12 +162,12 @@ body .log-section form .links a {
 #mapcontent h4 {
     margin-top: 0
 }
-/* #candidats_gender{
+ #job_offer_client{
     display: block;
 }
-#candidats_experience{
+#job_offer_job_category{
     display: block;
 }
-#candidats_job_candidat{
+#job_offer_job_type{
     display: block;
-} */
+}

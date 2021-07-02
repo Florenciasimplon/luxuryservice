@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AdminController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+ <div class="base">
+
+        <!-- Page -->
+        <div class="page">
+             <section class="rev_slider_wrapper">
+                 <div class="rev_slider materialize-slider">
+                    <ul>
+
+                        <!-- slide 1 start -->
+                        <li data-transition="parallaxtoleft" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off">
+
+                            <!-- MAIN IMAGE -->
+                   
+                 <img src="/assets/img/slide2.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                 </ul>   
+            </section>
+         </div>
+    </div>
+<div class="example-wrapper">
+<br>
+<br>
+<br>
+    <h1>Welcome</h1>
+    <h1>Espace Admin</h1>
+    <p>Dans cette espace vous pouvez | Créer | Modifier | Suprimer | des données.</p>
+   
+</div>
+{% if is_granted('ROLE_ADMIN') %} 
+        <div class="d-flex justify-content-center" style="margin-bottom:5vw">
+
+                <div class="portfolio-container">
+                    <ul class="portfolio-filter brand-filter text-center">
+                        <li><a class=" waves-effect waves-light" data-group="commercial" href="{{ path ('clients_index')}}">Clients</a></li>
+                        <li><a class=" waves-effect waves-light" data-group="commercial" href="{{ path ('candidats_index')}}">Candidats</a></li>
+                        <li><a class=" waves-effect waves-light" data-group="commercial" href="{{ path ('admin_job_offer_index')}}">Job Offers</a></li>
+                        <li><a class=" waves-effect waves-light" data-group="commercial" href="{{ path ('experience_index')}}">Experiences</a></li>
+                        <li><a class=" waves-effect waves-light" data-group="commercial" href="{{ path ('job_category_index')}}">Job Category</a></li>
+                        <li><a class=" waves-effect waves-light" data-group="commercial" href="{{ path ('job_types_index')}}">Job Type</a></li>
+                        <li><a class=" waves-effect waves-light" data-group="commercial" href="{{ path ('admin_candidature_index')}}">Candidature</a></li>
+                        
+                    </ul>
+                </div>
+
+        </div>
+    {% endif %}
+{% endblock %}

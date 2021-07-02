@@ -3,24 +3,48 @@
 {% block title %}Clients{% endblock %}
 
 {% block body %}
-    <h1>Clients</h1>
+<div class="base">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Name_Society</th>
-                <td>{{ client.NameSociety }}</td>
-            </tr>
-            <tr>
-                <th>Type_Activite</th>
-                <td>{{ client.TypeActivite }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <!-- Page -->
+    <div class="page">
+
+        <!-- RS5.0 Core JS Files -->
+
+        <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems! The following part can be removed on Server for On Demand Loading) -->
+
+        <!-- start revolution slider 5.0 -->
+        <section class="rev_slider_wrapper">
+            <div class="rev_slider materialize-slider">
+                <ul>
+
+                    <!-- slide 1 start -->
+                    <li data-transition="parallaxtoleft" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off">
+
+                        <!-- MAIN IMAGE -->
+                       <img src="/assets/img/bg3.jpg"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                    
+                </ul>
+            </div>
+        </section> 
+    </div>
+    <h1>{{ client.NameSociety }}s</h1>
+   
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Ref</th>
+                    <td>{{ client.id }}</td>
+                </tr>
+                <tr>
+                   
+                </tr>
+                <tr>
+                    <th>Type_Activite</th>
+                    <td>{{ client.TypeActivite }}</td>
+                </tr>
+            </tbody>
+        </table>
+  
 
     <a href="{{ path('clients_index') }}">back to list</a>
 

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidature index{% endblock %}
+
+{% block body %}
+    <h1 style="padding-top:10rem; text-align:center; background-color:#2F3138; margin-top:0; color:white; padding-bottom:2%">Candidature index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Candidat</th>
+                <th>Expérience</th>
+                <th>Job Offer</th>
+                <th>Date Postulate </th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for candidature in candidatures %}
+            <tr>
+                <td>{{ candidature.id }}</td>
+                <td>{{ candidature.candidat.FirstName }}</td>
+                <td>{{ candidature.candidat.experience }}</td>
+                <td>{{ candidature.jobOffer.title }}</td>
+                <td>{{ candidature.createDate|date("m/d/y") }}</td>
+                <td>
+                    <a style="width:2vw; height:3vh; font-size:1rem; padding:initial" class="btn grey darken-1 waves-effect waves-light btn-register"  href="{{path('candidats_show', {id: candidature.candidat.id})}}">show candidat </a>
+                    <a style="width:2vw; height:3vh; font-size:1rem; padding:initial" class="btn grey darken-1 waves-effect waves-light btn-register"  href="{{path('job_offer_show', {id: candidature.jobOffer.id})}}">show jobOffer </a>
+                        {{ include('candidature/_delete_form.html.twig') }}
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

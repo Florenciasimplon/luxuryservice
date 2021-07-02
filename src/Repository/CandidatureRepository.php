@@ -20,21 +20,20 @@ class CandidatureRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Candidature[] Returns an array of Candidature objects
+    //  *@return Candidature[] Returns an array of Candidature objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findAllwithJoin()
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('candidature')
+            ->addSelect('candidat') 
+            ->join('candidature.candidat', 'candidat')
+            ->addSelect('jobOffer') 
+            ->join('candidature.job_offer', 'jobOffer')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Candidature

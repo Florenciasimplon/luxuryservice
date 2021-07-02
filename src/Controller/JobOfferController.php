@@ -3,12 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\JobOffer;
+use App\Entity\JobTypes;
+use App\Entity\User;
 use App\Form\JobOfferType;
+use App\Repository\CandidatureRepository;
 use App\Repository\JobOfferRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @Route("/job/offer")
@@ -35,6 +40,7 @@ class JobOfferController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $jobOffer->setCreationDate(new DateTime());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($jobOffer);
             $entityManager->flush();
@@ -45,17 +51,38 @@ class JobOfferController extends AbstractController
         return $this->render('job_offer/new.html.twig', [
             'job_offer' => $jobOffer,
             'form' => $form->createView(),
+            
         ]);
     }
 
     /**
      * @Route("/{id}", name="job_offer_show", methods={"GET"})
      */
-    public function show(JobOffer $jobOffer): Response
+    public function show(
+        JobOffer $jobOffer, 
+        JobOfferRepository $jobOfferRepository, 
+        CandidatureRepository $candidatureRepository,
+        Security $security
+        ): Response
     {
+        /** @var User */
+        $user = $security->getUser();
+
+        $jobBefore = $jobOfferRepository->getPreviousJob($jobOffer);
+        $jobAfter = $jobOfferRepository->getNextJob($jobOffer);
+       
+
         return $this->render('job_offer/show.html.twig', [
             'job_offer' => $jobOffer,
+            
+            'job_previous'=> $jobBefore,
+            'job_next'=> $jobAfter,
+            'candidatureExists' => !! $candidatureRepository->findOneBy([
+                'job_offer' => $jobOffer->getId(),
+                'candidat' => $user->getCandidat()->getId(),
+            ])
         ]);
+        
     }
 
     /**

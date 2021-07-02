@@ -1,4 +1,93 @@
+ {% block stylesheets %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>.dropdown-content{
+        max-height: none;
+    } </style>
+{% endblock %}
+    
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">mode_comment</i>
+                {{form_widget(form.description)}}
+                {{form_label(form.description)}}
+
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">edit</i>
+                {{form_widget(form.note)}}
+                {{form_label(form.note)}}
+              
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">textsms</i>
+                {{form_widget(form.title)}}
+                {{form_label(form.title)}}
+               
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">location_on</i>
+                {{form_widget(form.location)}}
+                {{form_label(form.location)}}
+                
+             </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">event</i>
+                {{form_widget(form.closing_date)}}
+                {{form_label(form.closing_date)}}
+                
+                </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">euro_symbol</i>
+                {{form_widget(form.salary)}}
+                {{form_label(form.salary)}}
+               
+            </div>
+            {# <div class="input-field col s6">
+                <i class="material-icons prefix">event</i>
+                {{form_widget(form.creation_date)}}
+                {{form_label(form.creation_date)}}
+               
+            </div> #}
+            <div class="input-field col s2">
+               
+                {{form_widget(form.client)}}
+            
+               
+            </div>
+            <div class="input-field col s2">
+               
+                {{form_widget(form.job_category)}}
+            
+                
+            </div>
+            <div class="input-field col s2">
+                
+                {{form_widget(form.job_type)}}
+          
+            </div>
+              <button type="submit" class="btn btn-lg gradient secondary btn-block waves-effect waves-light mt-20 mb-20">{{ button_label|default('Save') }}</button>
+      </div>
+    </div>
+</div>
+
+        {{ form_end(form) }}
+ {% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
+    </script>
+    <script>
+        $('.datepicker').datepicker({
+            format: 'yyyy-mm-dd' });
+    </script>
+
+            {#{{ encore_entry_script_tags('app') }}#}
+{% endblock %}

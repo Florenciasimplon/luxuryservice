@@ -3,8 +3,8 @@
 {% block title %}Edit Candidats{% endblock %}
 
 {% block body %}
+  
 <div class="base">
-
     <!-- Page -->
     <div class="page">
 
@@ -23,32 +23,29 @@
                 </div>
             </div>
         </section>
-
-    {% set fielCount = 0%}
-    {% for data in dataCandidat %}
-    {% if data != null %}
-    {% set  fielCount = fielCount +1 %}
-    {% endif %}
-    {% endfor %}
-    {% set pourcentageCompleted = fielCount *100 / dataLength %}
+   {% for message in app.flashes('Error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
         <!-- Page Content-->
         <section class="gray-bg">
             <div class="container">
                 <div class="row">
                     <div class="score-container">
-                       {% if pourcentageCompleted != 100 %}
-                        <h4>
-                            <img src="https://media.giphy.com/media/d10dMmzqCYqQ0/giphy.gif" style="height: 80px; width: 201px;"> &nbsp;
-                            &nbsp; Your profile is no completed.
-                        </h4>
-                    {% else %}
+                       {% if filleFieldCount == 100 %}
                         <h4>
                             <img src="https://i.imgur.com/s9bPVaK.gif" style="height: 80px; width: 201px;"> &nbsp;
                             &nbsp; Hooray ! Your profile is complete.
                         </h4>
+                    {% else %}
+                        <h4>
+                            <img src="https://media.giphy.com/media/d10dMmzqCYqQ0/giphy.gif" style="height: 80px; width: 201px;"> &nbsp;
+                            &nbsp; Your profile is no completed.
+                        </h4>
                     {% endif %}
-                        <div class="c100 p{{pourcentageCompleted|round}} small complete ">
-                            <span>{{pourcentageCompleted|round}}%</span>
+                        <div class="c100 p{{filleFieldCount|round}} small complete ">
+                            <span>{{filleFieldCount|round}}%</span>
                             <div class="slice">
                                 <div class="bar"></div>
                                 <div class="fill"></div>
@@ -65,6 +62,7 @@
 
     </div>
 
+   
 </div>
     {# <h1>Edit Candidats</h1>
 

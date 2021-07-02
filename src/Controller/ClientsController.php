@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/clients")
+ * @Route("admin/clients")
  */
 class ClientsController extends AbstractController
 {
     /**
-     * @Route("/", name="clients_index", methods={"GET"})
+     * @Route("/index", name="clients_index", methods={"GET"})
      */
     public function index(ClientsRepository $clientsRepository): Response
     {
@@ -83,6 +83,7 @@ class ClientsController extends AbstractController
      */
     public function delete(Request $request, Clients $client): Response
     {
+        
         if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($client);

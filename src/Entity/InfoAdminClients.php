@@ -18,7 +18,7 @@ class InfoAdminClients
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity=Clients::class, inversedBy="infoAdminClients")
+     * @ORM\OneToOne(targetEntity=Clients::class, inversedBy="infoAdminClients", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $client;

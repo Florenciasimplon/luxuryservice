@@ -3,53 +3,81 @@
 {% block title %}Candidats index{% endblock %}
 
 {% block body %}
-    <h1>Candidats index</h1>
+    <div class="base">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Country</th>
-                <th>Cv</th>
-                <th>Picture</th>
-                <th>Current_location</th>
-                <th>Adress</th>
-                <th>Availability</th>
-                <th>Short_description</th>
-                <th>Active</th>
-                <th>Passport</th>
-                <th>actions</th>
-            </tr>
-        </thead>
+        <!-- Page -->
+        <div class="page">
+             <section class="rev_slider_wrapper">
+                 <div class="rev_slider materialize-slider">
+                    <ul>
+
+                        <!-- slide 1 start -->
+                        <li data-transition="parallaxtoleft" data-slotamount="default"  data-easein="Power4.easeInOut" data-easeout="Power4.easeInOut" data-masterspeed="2000" data-rotate="0"  data-fstransition="fade" data-fsmasterspeed="1500" data-fsslotamount="7" data-saveperformance="off">
+
+                            <!-- MAIN IMAGE -->
+                   
+                 <img src="/assets/img/work.webp"  alt=""  data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" data-bgparallax="10" class="rev-slidebg" data-no-retina>
+                 </ul>   
+            </section>
+         </div>
+    </div>
+<div class="list-candidats">
+   <h3>List des candidats</h3>
+
+  
         <tbody>
         {% for candidat in candidats %}
-            <tr>
-                <td>{{ candidat.id }}</td>
-                <td>{{ candidat.firstname }}</td>
-                <td>{{ candidat.lastname }}</td>
-                <td>{{ candidat.country }}</td>
-                <td>{{ candidat.cv }}</td>
-                <td>{{ candidat.picture }}</td>
-                <td>{{ candidat.currentLocation }}</td>
-                <td>{{ candidat.adress }}</td>
-                <td>{{ candidat.availability }}</td>
-                <td>{{ candidat.shortDescription }}</td>
-                <td>{{ candidat.active ? 'Yes' : 'No' }}</td>
-                <td>{{ candidat.passport }}</td>
-                <td>
-                    <a href="{{ path('candidats_show', {'id': candidat.id}) }}">show</a>
-                    <a href="{{ path('candidats_edit', {'id': candidat.id}) }}">edit</a>
-                </td>
-            </tr>
+        <div class="candidats">
+           <div class="row "style="margin-left:25px">
+            
+                <div class="card row listes">
+                    <div class="col s6">
+                        <p><span class=" titles">Firstname:</span> {{ candidat.firstname }}
+                    </div>
+                    <div class="col s6">
+                        <span class=" titles">Lastname:</span>    {{ candidat.lastname }}</p>
+                    </div>
+                    <div class="col s6">
+                    <p><span class="titles">Country:</span> {{ candidat.country }}
+                    </div>
+                    <div class="col s6">
+                  <span class="titles">Cv:</span>  {{ candidat.cv }}</p>
+                    </div>
+                    <div class="col s6">
+                    <p><span class="titles">Picture:</span> {{ candidat.picture }}
+                     </div>
+                     <div class="col s6">
+                   <span class="titles">Current_location:</span>  {{ candidat.currentLocation }}</p>
+                     </div>
+                     <div class="col s6">
+                    <p><span class="titles">Adress:</span> {{ candidat.adress }}
+                    </div>
+                <div class="col s6">
+                  <span class="titles">Availability:</span>   {{ candidat.availability }}</p>
+                  </div>
+                    <div class="col s6">
+                    <p><span class="titles">Short_description:</span>  {{ candidat.shortdescription }}
+                    </div>
+                    <div class="col s6">
+                   <span class="titles">Active:</span> {{ candidat.active ? 'Yes' : 'No' }}</p>
+                   </div>
+                    <div class="col s6">
+                    <p><span class="titles">Passport:</span> {{ candidat.passport }}</p>
+                    </div>
+                    
+                        <a href="{{ path('candidats_show', {'id': candidat.id}) }}"style="color:#b6a575">show</a>
+                        <a href="{{ path('candidats_edit', {'id': candidat.id}) }}"style="color:#b6a575">edit</a>
+                </div>
+             </div>
         {% else %}
             <tr>
                 <td colspan="13">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+    <a href="{{ path('candidats_new') }}">Create new</a> 
+</div>
+</div>
+   
+   
 
-    <a href="{{ path('candidats_new') }}">Create new</a>
 {% endblock %}
